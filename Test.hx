@@ -6,9 +6,12 @@ class Test {
     public function new() {}
 
     public function test() {
+        // Either of these causes a compiler hang.
         var def0:Foo = { make : null };
+        // But on ctrl-c, no stack trace is returned for this expression.
+        //var def0:Foo = new FooLike();
         
-        // Comment this line out to compile.
+        // This causes the compiler hang.
         asserts.assert( def0.make != null );
 
         // Whereas this works.
@@ -21,4 +24,12 @@ class Test {
 
 typedef Foo = {
 	function make<T>(v:T):Foo;
+}
+
+class FooLike {
+
+    public function new() {}
+
+    public function make<T>(v:T):FooLike return this;
+
 }
