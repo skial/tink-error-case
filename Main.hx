@@ -6,7 +6,7 @@ import tink.testrunner.Runner;
 class Main {
 	public static function main() {
 		Runner.run(
-            TestBatch.make([
+			TestBatch.make([
 				new Test(),
 			])
 		).handle(Runner.exit);
